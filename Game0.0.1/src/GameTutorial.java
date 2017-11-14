@@ -85,6 +85,10 @@ public class GameTutorial extends JFrame
 
     void update()
     {
+        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.x++;}
+        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.x--;}
+        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.y++;}
+        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.y--;}
     }
 
     void draw()
