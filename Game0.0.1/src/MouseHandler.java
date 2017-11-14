@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
  */
 public class MouseHandler implements MouseListener
 {
-    private boolean clicked = false;
+    public boolean clicked = false;
 
     public MouseHandler(Component c){c.addMouseListener(this);}
 
@@ -15,26 +15,24 @@ public class MouseHandler implements MouseListener
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        clicked = true;
+        System.out.println("Mouse down");
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {  }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        clicked = false;
+        System.out.println("Mouse up");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        System.out.println("Mouse on screen");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        System.out.println("Mouse off screen");
     }
 }
