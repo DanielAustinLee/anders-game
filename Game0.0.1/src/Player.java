@@ -1,15 +1,12 @@
 /**
- * Created by Daniel on 11/14/2017.
+ * Created by Daniel on 11/18/2017.
  */
-public class Player
-{
-    public int x;
-    public int y;
+public class Player extends Entity {
 
-    public Player(int _x, int _y)
+
+    public Player(int x, int y)
     {
-        this.x = _x;
-        this.y = _y;
+        super(x, y);
     }
 
 }

@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -16,12 +17,14 @@ public class GameTutorial extends JFrame
     private int windowWidth = 600;
     private int windowHeight = 400;
 
+    int rotation = 0;
 
 
     BufferedImage backBuffer;
     KeyHandler keyInput;
     MouseHandler mouseInput;
     Player p;
+
 
     public static void main(String[] a)
     {
@@ -85,10 +88,12 @@ public class GameTutorial extends JFrame
 
     void update()
     {
-        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.x++;}
-        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.x--;}
-        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.y++;}
-        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.y--;}
+        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.moveRight(5);}
+        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.moveLeft(5);}
+        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.moveDown(5);}
+        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.moveUp(5);}
+
+
 
     }
 
@@ -103,6 +108,7 @@ public class GameTutorial extends JFrame
 
         bbg.setColor(Color.BLACK);
         bbg.drawOval(p.x, p.y, 20, 20);
+
 
         g.drawImage(backBuffer, 0, 0, this);
 

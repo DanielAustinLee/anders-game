@@ -9,7 +9,6 @@ public class KeyHandler implements KeyListener
 {
 
     private boolean[] keys = new boolean[256];
-    private boolean mouse = false;
 
     public KeyHandler(Component c)
     {
