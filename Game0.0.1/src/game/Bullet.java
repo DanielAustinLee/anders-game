@@ -20,6 +20,6 @@ public class Bullet extends Entity {
     @Override
     public void action()
     {
-        this.moveForward(3);
+        this.moveForward(5);
     }
 }

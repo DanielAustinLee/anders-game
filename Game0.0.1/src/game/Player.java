@@ -18,21 +18,30 @@ public class Player extends Entity {
     private static long cooldown = 500;
     private static long lastAction;
     public Image sprite;
+    private ImageObserver imageObserver;
 
     private Player(int x, int y)
     {
-        super(x, y, 32, 32);
+        super(x, y, 19, 29);
 
         try
         {
             String workingDir = System.getProperty("user.dir");
             sprite = ImageIO.read(new File(workingDir + "\\Game0.0.1\\src\\game\\player_sprite.jpg"));
+            imageObserver = new ImageObserver() {
+                @Override
+                public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                    return false;
+                }
+            };
         } catch (IOException e)
         {
             String workingDir = System.getProperty("user.dir");
             System.out.println("Current working directory : " + workingDir);
             e.printStackTrace();
         }
+        this.width = sprite.getWidth(imageObserver);
+        this.height = sprite.getHeight(imageObserver);
 
     }
 

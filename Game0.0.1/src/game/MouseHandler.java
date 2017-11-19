@@ -21,17 +21,13 @@ public class MouseHandler implements MouseListener
 
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("Mouse down");
-    }
+    public void mouseClicked(MouseEvent e){    }
 
     @Override
     public void mousePressed(MouseEvent e) { c.mouseClick(); }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        System.out.println("Mouse up");
-    }
+    public void mouseReleased(MouseEvent e) {    }
 
     @Override
     public void mouseEntered(MouseEvent e) {
