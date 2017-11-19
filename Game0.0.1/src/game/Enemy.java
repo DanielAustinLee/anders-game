@@ -9,6 +9,9 @@ public class Enemy extends Entity
 {
     static ArrayList<Enemy> enemies = new ArrayList<>(5);
 
+    private boolean patrollingNorth = false;
+    private boolean patrollingSouth = true;
+
     public Enemy(int x, int y)
     {
         super(x, y, 30,30);

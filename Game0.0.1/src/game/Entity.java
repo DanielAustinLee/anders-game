@@ -10,6 +10,8 @@ import static java.lang.Math.sin;
  */
 public class Entity
 {
+    public int x;
+    public int y;
     public int x1;
     public int y1;
     public int x2;
@@ -18,7 +20,7 @@ public class Entity
     public int height;
     public double orientation;
 
-    //TODO Give all entities hitboxes
+
 
     public Entity(int _x, int _y, int _width, int _height)
     {
@@ -29,6 +31,8 @@ public class Entity
         this.y1 = _y;
         this.x2 = x1 + width;
         this.y2 = y1 + height;
+        this.x = x1 + width/2;
+        this.y = y1 + height/2;
         this.orientation = 0.00;
     }
 
@@ -57,6 +61,8 @@ public class Entity
     }
 
     public void turn(double amount) { orientation = orientation + amount; }
+
+    public void setOrientation(double o) { orientation = -o + Math.PI/2; }
 
     public void moveForward(int amount)
     {

@@ -15,6 +15,8 @@ public class Bullet extends Entity {
         bullets.add(this);
     }
 
+
+
     @Override
     public void action()
     {

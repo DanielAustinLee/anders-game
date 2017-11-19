@@ -7,9 +7,20 @@ import static game.Player.player;
 public class Controller
 {
 
+    public static Controller c = null;
+    private Controller()
+    {
 
-    public Controller()
-    {}
+    }
+
+    public static Controller getController()
+    {
+        if (c == null)
+        {
+            c = new Controller();
+        }
+        return c;
+    }
 
     public void keyW()
     {
@@ -42,6 +53,11 @@ public class Controller
     }
 
     public void keySpace()
+    {
+        player.action();
+    }
+
+    public void mouseClick()
     {
         player.action();
     }

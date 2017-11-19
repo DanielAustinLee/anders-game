@@ -7,6 +7,7 @@ import java.awt.image.ImageObserver;
 import java.util.Iterator;
 import javax.swing.*;
 
+import static game.Controller.getController;
 import static java.lang.Math.sin;
 import static java.lang.Math.cos;
 
@@ -86,7 +87,7 @@ public class Game extends JFrame
         mouseInput = new MouseHandler(this);
 
         //Initialize player and controller
-        c = new Controller();
+        c = getController();
 
         p = Player.getPlayer();
 
@@ -120,6 +121,11 @@ public class Game extends JFrame
         if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {c.keyRight();}
 
         if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {c.keySpace();}
+
+
+
+        player.setOrientation(Math.atan2(MouseInfo.getPointerInfo().getLocation().y - player.y, MouseInfo.getPointerInfo().getLocation().x - player.x ));
+
 
         for (Enemy e : enemies)
         {
