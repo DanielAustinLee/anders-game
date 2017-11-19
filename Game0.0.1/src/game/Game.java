@@ -3,6 +3,7 @@ package game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import javax.swing.*;
 
 import static java.lang.Math.sin;
@@ -92,6 +93,7 @@ public class Game extends JFrame
         setVisible(true);
 
         new Enemy(30, 30);
+        new Enemy(200, 300);
 
     }
 
@@ -121,7 +123,7 @@ public class Game extends JFrame
             }
         }
 
-
+        checkCollisions();
 
     }
 
@@ -152,5 +154,27 @@ public class Game extends JFrame
 
     }
 
+    void checkCollisions()
+    {
+
+
+
+        for (Iterator<Enemy> enemyIterator = enemies.iterator(); enemyIterator.hasNext();)
+        {
+            Enemy e = enemyIterator.next();
+
+            for ( Iterator<Bullet> bulletIterator = bullets.iterator(); bulletIterator.hasNext();)
+            {
+                Bullet b = bulletIterator.next();
+
+                if (Math.sqrt(Math.pow(b.x - e.x, 2) + Math.pow(b.y - e.y, 2)) < 15)
+                {
+                    enemyIterator.remove();
+                    bulletIterator.remove();
+                }
+            }
+
+        }
+    }
 
 }
