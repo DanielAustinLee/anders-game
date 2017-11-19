@@ -124,7 +124,7 @@ public class Game extends JFrame
 
 
 
-        player.setOrientation(Math.atan2(MouseInfo.getPointerInfo().getLocation().y - player.y, MouseInfo.getPointerInfo().getLocation().x - player.x ));
+        player.setOrientation(-(Math.atan2(MouseInfo.getPointerInfo().getLocation().y - player.y, MouseInfo.getPointerInfo().getLocation().x - player.x )) + Math.PI/2);
 
 
         for (Enemy e : enemies)
@@ -157,7 +157,7 @@ public class Game extends JFrame
             }
         });
 
-        bbg.drawLine(player.x1 + 10, player.y1 + 10, (int)(player.x1 + 10 + 10 * sin(player.orientation)), (int)(player.y1 + 10 + 10 * cos(player.orientation)) );
+        bbg.drawLine(player.x, player.y, (int)(player.x + 20 * sin(player.orientation)), (int)(player.y + 20 * cos(player.orientation)) );
 
         //draw bullets
         for (Bullet b : bullets)

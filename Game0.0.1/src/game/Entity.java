@@ -40,29 +40,33 @@ public class Entity
     {
         y1 = y1 - amount;
         y2 = y2 - amount;
+        y = y - amount;
     }
 
     public void moveDown(int amount)
     {
         y1 = y1 + amount;
         y2 = y2 + amount;
+        y = y + amount;
     }
 
     public void moveRight(int amount)
     {
         x1 = x1 + amount;
         x2 = x2 + amount;
+        x = x + amount;
     }
 
     public void moveLeft(int amount)
     {
         x1 = x1 - amount;
         x2 = x2 - amount;
+        x = x - amount;
     }
 
     public void turn(double amount) { orientation = orientation + amount; }
 
-    public void setOrientation(double o) { orientation = -o + Math.PI/2; }
+    public void setOrientation(double o) { orientation = o; }
 
     public void moveForward(int amount)
     {
@@ -70,6 +74,8 @@ public class Entity
         y1 += amount * cos(orientation);
         x2 += amount * sin(orientation);
         y2 += amount * cos(orientation);
+        x += amount * sin(orientation);
+        y += amount * cos(orientation);
     }
 
     public void action(){}

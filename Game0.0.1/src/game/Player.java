@@ -21,7 +21,7 @@ public class Player extends Entity {
 
     private Player(int x, int y)
     {
-        super(x, y, 20, 30);
+        super(x, y, 32, 32);
 
         try
         {
@@ -58,8 +58,8 @@ public class Player extends Entity {
 
     public void shoot()
     {
-        Bullet b = new Bullet(this.x1, this.y1);
-        b.orientation = this.orientation;
+        Bullet b = new Bullet(this.x, this.y);
+        b.setOrientation(this.orientation);
     }
 
 }
