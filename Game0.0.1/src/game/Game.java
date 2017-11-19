@@ -8,8 +8,9 @@ import javax.swing.*;
 import static java.lang.Math.sin;
 import static java.lang.Math.cos;
 
-import static game.Entity.entities;
+import static game.Bullet.bullets;
 import static game.Player.player;
+import static game.Enemy.enemies;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -90,6 +91,8 @@ public class Game extends JFrame
         backBuffer = new BufferedImage(windowWidth, windowHeight, BufferedImage.TYPE_INT_RGB);
         setVisible(true);
 
+        new Enemy(30, 30);
+
     }
 
     void update()
@@ -104,20 +107,17 @@ public class Game extends JFrame
 
         if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {p.action();}
 
-        Entity e;
+        Bullet b;
 
-        for (int i = 0; i < entities.size(); i++)
+        for (int i = 0; i < bullets.size(); i++)
         {
 
-            e = entities.get(i);
+            b = bullets.get(i);
+            b.action();
 
-            if (e != p)
+            if (Math.sqrt(Math.pow(b.x - p.x, 2) + Math.pow(b.y - p.y, 2)) > 300)
             {
-                e.action();
-            }
-            if (Math.sqrt(Math.pow(e.x - p.x, 2) + Math.pow(e.y - p.y, 2)) > 300)
-            {
-                entities.remove(e);
+                bullets.remove(b);
             }
         }
 
@@ -138,10 +138,14 @@ public class Game extends JFrame
 
         bbg.drawOval(Player.getPlayer().x, Player.getPlayer().y, 20, 20);
         bbg.drawLine(Player.getPlayer().x + 10, Player.getPlayer().y + 10, (int)(Player.getPlayer().x + 10 + 10 * sin(Player.getPlayer().orientation)), (int)(Player.getPlayer().y + 10 + 10 * cos(Player.getPlayer().orientation)) );
-        for (Entity e : entities)
+        for (Bullet b : bullets)
         {
-            if (e instanceof Bullet)
-                bbg.drawOval(e.x, e.y, 10, 10);
+            bbg.drawOval(b.x, b.y, 10, 10);
+        }
+
+        for (Enemy e : enemies)
+        {
+            bbg.drawOval(e.x, e.y, 30, 30);
         }
 
         g.drawImage(backBuffer, 0, 0, this);

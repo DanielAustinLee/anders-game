@@ -14,14 +14,13 @@ public class Entity
     public int y;
     public double orientation;
 
-    static ArrayList<Entity> entities = new ArrayList<>(10);
+
 
     public Entity(int _x, int _y)
     {
         this.x = _x;
         this.y = _y;
         this.orientation = 0.00;
-        entities.add(this);
     }
 
     public void moveUp(int amount)
