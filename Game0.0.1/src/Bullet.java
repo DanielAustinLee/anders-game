@@ -5,8 +5,12 @@ public class Bullet extends Entity {
 
     public Bullet(int x, int y)
     {
-        super(x, y);
-        entities.add(this);
+        super(x + 5, y + 5);
     }
 
+    @Override
+    public void action()
+    {
+        this.moveForward();
+    }
 }

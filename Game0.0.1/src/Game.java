@@ -2,13 +2,13 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import javax.swing.*;
+
 
 /**
  * Created by Daniel on 11/7/2017.
  */
-public class GameTutorial extends JFrame
+public class Game extends JFrame
 {
 
     private boolean isRunning;
@@ -28,7 +28,7 @@ public class GameTutorial extends JFrame
 
     public static void main(String[] a)
     {
-        GameTutorial g = new GameTutorial();
+        Game g = new Game();
         g.run();
         System.exit(0);
 
@@ -75,7 +75,7 @@ public class GameTutorial extends JFrame
         mouseInput = new MouseHandler(this);
 
 
-        p = new Player(windowWidth/2, windowHeight/2);
+        p = Player.getPlayer();
 
         setTitle("Test");
         setSize(windowWidth, windowHeight);
@@ -88,10 +88,23 @@ public class GameTutorial extends JFrame
 
     void update()
     {
-        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.moveRight(5);}
-        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.moveLeft(5);}
-        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.moveDown(5);}
-        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.moveUp(5);}
+        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.moveRight(1);}
+        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.moveLeft(1);}
+        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.moveDown(1);}
+        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.moveUp(1);}
+
+        if (keyInput.isKeyDown(KeyEvent.VK_LEFT)) {p.orientation += 0.12;}
+        if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {p.orientation -= 0.12;}
+
+        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {p.shoot();}
+
+        for (Entity e : Entity.entities)
+        {
+            if (e != p)
+            {
+                e.action();
+            }
+        }
 
 
 
@@ -107,8 +120,13 @@ public class GameTutorial extends JFrame
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 
         bbg.setColor(Color.BLACK);
-        bbg.drawOval(p.x, p.y, 20, 20);
 
+        bbg.drawOval(Player.getPlayer().x, Player.getPlayer().y, 20, 20);
+        for (Entity e : Entity.entities)
+        {
+            if (e instanceof Bullet)
+                bbg.drawOval(e.x, e.y, 10, 10);
+        }
 
         g.drawImage(backBuffer, 0, 0, this);
 
