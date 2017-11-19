@@ -1,5 +1,13 @@
 package game;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
+
+
 /**
  * Created by Daniel on 11/18/2017.
  */
@@ -9,11 +17,23 @@ public class Player extends Entity {
 
     private static long cooldown = 500;
     private static long lastAction;
-
+    public Image sprite;
 
     private Player(int x, int y)
     {
-        super(x, y);
+        super(x, y, 20, 30);
+
+        try
+        {
+            String workingDir = System.getProperty("user.dir");
+            sprite = ImageIO.read(new File(workingDir + "\\Game0.0.1\\src\\game\\player_sprite.jpg"));
+        } catch (IOException e)
+        {
+            String workingDir = System.getProperty("user.dir");
+            System.out.println("Current working directory : " + workingDir);
+            e.printStackTrace();
+        }
+
     }
 
     public static Player getPlayer()
@@ -38,7 +58,7 @@ public class Player extends Entity {
 
     public void shoot()
     {
-        Bullet b = new Bullet(this.x, this.y);
+        Bullet b = new Bullet(this.x1, this.y1);
         b.orientation = this.orientation;
     }
 

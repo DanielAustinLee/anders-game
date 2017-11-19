@@ -11,13 +11,13 @@ public class Bullet extends Entity {
 
     public Bullet(int x, int y)
     {
-        super(x + 5, y + 5);
+        super(x + 5, y + 5, 5, 5);
         bullets.add(this);
     }
 
     @Override
     public void action()
     {
-        this.moveForward();
+        this.moveForward(3);
     }
 }

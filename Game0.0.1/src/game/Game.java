@@ -3,6 +3,7 @@ package game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.util.Iterator;
 import javax.swing.*;
 
@@ -77,25 +78,34 @@ public class Game extends JFrame
 
     void initialize()
     {
+        //game state variables, initialize input handlers
         isRunning = true;
         fps = 60;
 
         keyInput = new KeyHandler(this);
         mouseInput = new MouseHandler(this);
 
+        //Initialize player and controller
         c = new Controller();
 
         p = Player.getPlayer();
 
-        setTitle("Test");
+        //set up window
+        setTitle("Anders Game");
         setSize(windowWidth, windowHeight);
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         backBuffer = new BufferedImage(windowWidth, windowHeight, BufferedImage.TYPE_INT_RGB);
         setVisible(true);
 
+
+        //make some enemies
         new Enemy(30, 30);
-        new Enemy(200, 300);
+        new Enemy(100, 30);
+        new Enemy(150, 30);
+        new Enemy(200, 30);
+        new Enemy(250, 30);
+
 
     }
 
@@ -111,21 +121,12 @@ public class Game extends JFrame
 
         if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {c.keySpace();}
 
-        Bullet b;
-
-        //this should probably be somewhere else
-        for (int i = 0; i < bullets.size(); i++)
+        for (Enemy e : enemies)
         {
-
-            b = bullets.get(i);
-            b.action();
-
-            if (Math.sqrt(Math.pow(b.x - p.x, 2) + Math.pow(b.y - p.y, 2)) > 300)
-            {
-                bullets.remove(b);
-            }
+            e.action();
         }
 
+        updateProjectiles();
         checkCollisions();
 
     }
@@ -143,19 +144,25 @@ public class Game extends JFrame
 
         //figure out how to draw images
 
-        bbg.drawOval(player.x, player.y, 20, 20);
-        bbg.drawLine(player.x + 10, player.y + 10, (int)(player.x + 10 + 10 * sin(player.orientation)), (int)(player.y + 10 + 10 * cos(player.orientation)) );
+        bbg.drawImage(player.sprite, player.x1, player.y1, player.width, player.height, new ImageObserver() {
+            @Override
+            public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                return false;
+            }
+        });
+
+        bbg.drawLine(player.x1 + 10, player.y1 + 10, (int)(player.x1 + 10 + 10 * sin(player.orientation)), (int)(player.y1 + 10 + 10 * cos(player.orientation)) );
 
         //draw bullets
         for (Bullet b : bullets)
         {
-            bbg.drawOval(b.x, b.y, 10, 10);
+            bbg.drawOval(b.x1, b.y1, 10, 10);
         }
 
         //draw enemies
         for (Enemy e : enemies)
         {
-            bbg.drawOval(e.x, e.y, 30, 30);
+            bbg.drawOval(e.x1, e.y1, 30, 30);
         }
 
         g.drawImage(backBuffer, 0, 0, this);
@@ -175,7 +182,7 @@ public class Game extends JFrame
             {
                 Bullet b = bulletIterator.next();
 
-                if (Math.sqrt(Math.pow(b.x - e.x, 2) + Math.pow(b.y - e.y, 2)) < 15)
+                if (e.x1 <= b.x2 && e.x2 >= b.x1 && e.y1 <= b.y2 && e.y2 >= b.y1 )
                 {
                     enemyIterator.remove();
                     bulletIterator.remove();
@@ -183,6 +190,25 @@ public class Game extends JFrame
             }
 
         }
+    }
+
+    void updateProjectiles()
+    {
+
+        Bullet b;
+
+        for (int i = 0; i < bullets.size(); i++)
+        {
+
+            b = bullets.get(i);
+            b.action();
+
+            if (Math.sqrt(Math.pow(b.x1 - p.x1, 2) + Math.pow(b.y1 - p.y1, 2)) > 300)
+            {
+                bullets.remove(b);
+            }
+        }
+
     }
 
 }

@@ -11,9 +11,15 @@ public class Enemy extends Entity
 
     public Enemy(int x, int y)
     {
-        super(x, y);
+        super(x, y, 30,30);
         enemies.add(this);
     }
 
-    //TODO Make enemies smarter
+    //TODO Make enemies do things
+
+    @Override
+    public void action()
+    {
+        moveDown(1);
+    }
 }
