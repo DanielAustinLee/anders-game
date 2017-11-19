@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
+import static java.lang.Math.sin;
+import static java.lang.Math.cos;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -96,13 +98,22 @@ public class Game extends JFrame
         if (keyInput.isKeyDown(KeyEvent.VK_LEFT)) {p.orientation += 0.12;}
         if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {p.orientation -= 0.12;}
 
-        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {p.shoot();}
+        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {p.action();}
 
-        for (Entity e : Entity.entities)
+        Entity e;
+
+        for (int i = 0; i < Entity.entities.size(); i++)
         {
+
+            e = Entity.entities.get(i);
+
             if (e != p)
             {
                 e.action();
+            }
+            if (Math.sqrt(Math.pow(e.x - p.x, 2) + Math.pow(e.y - p.y, 2)) > 300)
+            {
+                Entity.entities.remove(e);
             }
         }
 
@@ -122,6 +133,7 @@ public class Game extends JFrame
         bbg.setColor(Color.BLACK);
 
         bbg.drawOval(Player.getPlayer().x, Player.getPlayer().y, 20, 20);
+        bbg.drawLine(Player.getPlayer().x + 10, Player.getPlayer().y + 10, (int)(Player.getPlayer().x + 10 + 10 * sin(Player.getPlayer().orientation)), (int)(Player.getPlayer().y + 10 + 10 * cos(Player.getPlayer().orientation)) );
         for (Entity e : Entity.entities)
         {
             if (e instanceof Bullet)
