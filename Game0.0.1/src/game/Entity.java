@@ -1,4 +1,5 @@
-import java.lang.Math;
+package game;
+
 import java.util.ArrayList;
 
 import static java.lang.Math.cos;
@@ -13,7 +14,7 @@ public class Entity
     public int y;
     public double orientation;
 
-    public static ArrayList<Entity> entities = new ArrayList<>(10);
+    static ArrayList<Entity> entities = new ArrayList<>(10);
 
     public Entity(int _x, int _y)
     {

@@ -1,3 +1,4 @@
+package game;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -6,6 +7,9 @@ import javax.swing.*;
 
 import static java.lang.Math.sin;
 import static java.lang.Math.cos;
+
+import static game.Entity.entities;
+import static game.Player.player;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -102,10 +106,10 @@ public class Game extends JFrame
 
         Entity e;
 
-        for (int i = 0; i < Entity.entities.size(); i++)
+        for (int i = 0; i < entities.size(); i++)
         {
 
-            e = Entity.entities.get(i);
+            e = entities.get(i);
 
             if (e != p)
             {
@@ -113,7 +117,7 @@ public class Game extends JFrame
             }
             if (Math.sqrt(Math.pow(e.x - p.x, 2) + Math.pow(e.y - p.y, 2)) > 300)
             {
-                Entity.entities.remove(e);
+                entities.remove(e);
             }
         }
 
@@ -134,7 +138,7 @@ public class Game extends JFrame
 
         bbg.drawOval(Player.getPlayer().x, Player.getPlayer().y, 20, 20);
         bbg.drawLine(Player.getPlayer().x + 10, Player.getPlayer().y + 10, (int)(Player.getPlayer().x + 10 + 10 * sin(Player.getPlayer().orientation)), (int)(Player.getPlayer().y + 10 + 10 * cos(Player.getPlayer().orientation)) );
-        for (Entity e : Entity.entities)
+        for (Entity e : entities)
         {
             if (e instanceof Bullet)
                 bbg.drawOval(e.x, e.y, 10, 10);

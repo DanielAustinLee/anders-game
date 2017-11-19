@@ -1,9 +1,11 @@
+package game;
+
 /**
  * Created by Daniel on 11/18/2017.
  */
 public class Player extends Entity {
 
-    public static Player player = null;
+    static Player player = null;
 
     private static long cooldown = 500;
     private static long lastAction;
