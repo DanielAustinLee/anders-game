@@ -32,6 +32,7 @@ public class Game extends JFrame
     KeyHandler keyInput;
     MouseHandler mouseInput;
     Player p;
+    Controller c;
 
 
     public static void main(String[] a)
@@ -82,6 +83,7 @@ public class Game extends JFrame
         keyInput = new KeyHandler(this);
         mouseInput = new MouseHandler(this);
 
+        c = new Controller();
 
         p = Player.getPlayer();
 
@@ -99,18 +101,19 @@ public class Game extends JFrame
 
     void update()
     {
-        if (keyInput.isKeyDown(KeyEvent.VK_D)) {p.moveRight(1);}
-        if (keyInput.isKeyDown(KeyEvent.VK_A)) {p.moveLeft(1);}
-        if (keyInput.isKeyDown(KeyEvent.VK_S)) {p.moveDown(1);}
-        if (keyInput.isKeyDown(KeyEvent.VK_W)) {p.moveUp(1);}
+        if (keyInput.isKeyDown(KeyEvent.VK_D)) {c.keyD();}
+        if (keyInput.isKeyDown(KeyEvent.VK_A)) {c.keyA();}
+        if (keyInput.isKeyDown(KeyEvent.VK_S)) {c.keyS();}
+        if (keyInput.isKeyDown(KeyEvent.VK_W)) {c.keyW();}
 
-        if (keyInput.isKeyDown(KeyEvent.VK_LEFT)) {p.orientation += 0.12;}
-        if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {p.orientation -= 0.12;}
+        if (keyInput.isKeyDown(KeyEvent.VK_LEFT)) {c.keyLeft();}
+        if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {c.keyRight();}
 
-        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {p.action();}
+        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {c.keySpace();}
 
         Bullet b;
 
+        //this should probably be somewhere else
         for (int i = 0; i < bullets.size(); i++)
         {
 
@@ -138,13 +141,18 @@ public class Game extends JFrame
 
         bbg.setColor(Color.BLACK);
 
-        bbg.drawOval(Player.getPlayer().x, Player.getPlayer().y, 20, 20);
-        bbg.drawLine(Player.getPlayer().x + 10, Player.getPlayer().y + 10, (int)(Player.getPlayer().x + 10 + 10 * sin(Player.getPlayer().orientation)), (int)(Player.getPlayer().y + 10 + 10 * cos(Player.getPlayer().orientation)) );
+        //figure out how to draw images
+
+        bbg.drawOval(player.x, player.y, 20, 20);
+        bbg.drawLine(player.x + 10, player.y + 10, (int)(player.x + 10 + 10 * sin(player.orientation)), (int)(player.y + 10 + 10 * cos(player.orientation)) );
+
+        //draw bullets
         for (Bullet b : bullets)
         {
             bbg.drawOval(b.x, b.y, 10, 10);
         }
 
+        //draw enemies
         for (Enemy e : enemies)
         {
             bbg.drawOval(e.x, e.y, 30, 30);

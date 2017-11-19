@@ -14,4 +14,6 @@ public class Enemy extends Entity
         super(x, y);
         enemies.add(this);
     }
+
+    //TODO Make enemies smarter
 }

@@ -43,6 +43,8 @@ public class Entity
         x = x - amount;
     }
 
+    public void turn(double amount) { orientation = orientation + amount; }
+
     public void moveForward()
     {
         x += 2 * sin(orientation);

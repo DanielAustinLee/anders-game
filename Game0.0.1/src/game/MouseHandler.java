@@ -29,12 +29,8 @@ public class MouseHandler implements MouseListener
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        System.out.println("Mouse on screen");
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        System.out.println("Mouse off screen");
-    }
+    public void mouseExited(MouseEvent e) {}
 }
