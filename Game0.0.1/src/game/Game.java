@@ -14,6 +14,7 @@ import static java.lang.Math.cos;
 import static game.Bullet.bullets;
 import static game.Player.player;
 import static game.Enemy.enemies;
+import static game.World.worldMap;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -100,6 +101,9 @@ public class Game extends JFrame
         setVisible(true);
 
 
+        // World.initialize();
+
+
         //make some enemies
         new Enemy(30, 30);
         new Enemy(100, 30);
@@ -135,6 +139,16 @@ public class Game extends JFrame
         updateProjectiles();
         checkCollisions();
 
+        if (enemies.size() == 0){
+
+            new Enemy(30, 30);
+            new Enemy(100, 30);
+            new Enemy(150, 30);
+            new Enemy(200, 30);
+            new Enemy(250, 30);
+
+        }
+
     }
 
     void draw()
@@ -143,12 +157,12 @@ public class Game extends JFrame
 
         Graphics bbg = backBuffer.getGraphics();
 
-        bbg.setColor(Color.WHITE);
+        //TODO Figure out how to draw a map
+        bbg.setColor(Color.GREEN);
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 
-        bbg.setColor(Color.BLACK);
 
-        //figure out how to draw images
+
 
         bbg.drawImage(player.sprite, player.x1, player.y1, player.width, player.height, new ImageObserver() {
             @Override
@@ -157,6 +171,7 @@ public class Game extends JFrame
             }
         });
 
+        bbg.setColor(Color.BLACK);
         bbg.drawLine(player.x, player.y, (int)(player.x + 20 * sin(player.orientation)), (int)(player.y + 20 * cos(player.orientation)) );
 
         //draw bullets

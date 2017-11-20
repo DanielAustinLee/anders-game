@@ -9,6 +9,7 @@ public class Enemy extends Entity
 {
     static ArrayList<Enemy> enemies = new ArrayList<>(5);
 
+    private long count = 0;
     private boolean patrollingNorth = false;
     private boolean patrollingSouth = true;
 
@@ -23,6 +24,10 @@ public class Enemy extends Entity
     @Override
     public void action()
     {
-        moveDown(1);
+        if (count % 500 < 250)
+            moveDown(1);
+        else
+            moveUp(1);
+        count++;
     }
 }
