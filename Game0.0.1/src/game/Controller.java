@@ -1,16 +1,28 @@
 package game;
 
-import static game.Player.player;
+
+import game.Messaging.Message;
+import game.Systems.System;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * Created by Daniel on 11/14/2017.
  */
 public class Controller
 {
 
+    private final int MSG_BUFF_LEN = 60;
+
     public static Controller c = null;
+    public ArrayList<System> systems;
+    private ArrayList<Message> messageBuffer;
+
     private Controller()
     {
-
+        systems = new ArrayList<>(5);
+        messageBuffer = new ArrayList<>(MSG_BUFF_LEN);
     }
 
     public static Controller getController()
@@ -22,45 +34,27 @@ public class Controller
         return c;
     }
 
-    public void keyW()
+    public void postMessage(Message msg)
     {
-        player.moveUp(1);
+        if (messageBuffer.size() < MSG_BUFF_LEN)
+            messageBuffer.add(msg);
     }
 
-    public void keyA()
+    public void update()
     {
-        player.moveLeft(1);
+
+        if (messageBuffer.size() > 0) {
+            Message msg = messageBuffer.remove(0);
+
+            for (System s : systems) {
+
+                if (s.canHandle(msg)) {
+                    s.handleMessage(msg);
+                }
+            }
+        }
     }
 
-    public void keyS()
-    {
-        player.moveDown(1);
-    }
-
-    public void keyD()
-    {
-        player.moveRight(1);
-    }
-
-    public void keyLeft()
-    {
-        player.turn(0.10);
-    }
-
-    public void keyRight()
-    {
-        player.turn(-0.10);
-    }
-
-    public void keySpace()
-    {
-        player.action();
-    }
-
-    public void mouseClick()
-    {
-        player.action();
-    }
 
 
 }

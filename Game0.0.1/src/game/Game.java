@@ -1,20 +1,13 @@
 package game;
 
+import game.Entities.Player;
+import game.Systems.*;
+
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.util.Iterator;
 import javax.swing.*;
 
 import static game.Controller.getController;
-import static java.lang.Math.sin;
-import static java.lang.Math.cos;
-
-import static game.Bullet.bullets;
-import static game.Player.player;
-import static game.Enemy.enemies;
-import static game.World.worldMap;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -25,24 +18,24 @@ public class Game extends JFrame
     private boolean isRunning;
     private int fps;
 
-    private int windowWidth = 600;
-    private int windowHeight = 400;
+    public static final int windowWidth = 600;
+    public static final int windowHeight = 400;
 
     int rotation = 0;
 
 
     BufferedImage backBuffer;
-    KeyHandler keyInput;
-    MouseHandler mouseInput;
+    Input input;
     Player p;
     Controller c;
+    Console console;
 
 
     public static void main(String[] a)
     {
         Game g = new Game();
         g.run();
-        System.exit(0);
+        java.lang.System.exit(0);
 
     }
 
@@ -55,10 +48,9 @@ public class Game extends JFrame
 
         while (isRunning)
         {
-            time = System.currentTimeMillis();
-            update();
-            draw();
-            time = (1000 / fps) - (System.currentTimeMillis() - time);
+            time = java.lang.System.currentTimeMillis();
+            c.update();
+            time = (1000 / fps) - (java.lang.System.currentTimeMillis() - time);
 
 
             if (time > 0)
@@ -80,17 +72,14 @@ public class Game extends JFrame
 
     void initialize()
     {
-        //game state variables, initialize input handlers
+        //game state variables, initialize input handler
         isRunning = true;
         fps = 60;
+        input = new Input(this);
 
-        keyInput = new KeyHandler(this);
-        mouseInput = new MouseHandler(this);
-
-        //Initialize player and controller
+        //Initialize controller and console
         c = getController();
-
-        p = Player.getPlayer();
+        console = new Console();
 
         //set up window
         setTitle("Anders Game");
@@ -101,63 +90,22 @@ public class Game extends JFrame
         setVisible(true);
 
 
-        // World.initialize();
-
-
-        //make some enemies
-        new Enemy(30, 30);
-        new Enemy(100, 30);
-        new Enemy(150, 30);
-        new Enemy(200, 30);
-        new Enemy(250, 30);
-
 
     }
 
     void update()
     {
-        if (keyInput.isKeyDown(KeyEvent.VK_D)) {c.keyD();}
-        if (keyInput.isKeyDown(KeyEvent.VK_A)) {c.keyA();}
-        if (keyInput.isKeyDown(KeyEvent.VK_S)) {c.keyS();}
-        if (keyInput.isKeyDown(KeyEvent.VK_W)) {c.keyW();}
-
-        if (keyInput.isKeyDown(KeyEvent.VK_LEFT)) {c.keyLeft();}
-        if (keyInput.isKeyDown(KeyEvent.VK_RIGHT)) {c.keyRight();}
-
-        if (keyInput.isKeyDown(KeyEvent.VK_SPACE)) {c.keySpace();}
-
-
-
-        player.setOrientation(-(Math.atan2(MouseInfo.getPointerInfo().getLocation().y - player.y, MouseInfo.getPointerInfo().getLocation().x - player.x )) + Math.PI/2);
-
-
-        for (Enemy e : enemies)
-        {
-            e.action();
-        }
-
-        updateProjectiles();
-        checkCollisions();
-
-        if (enemies.size() == 0){
-
-            new Enemy(30, 30);
-            new Enemy(100, 30);
-            new Enemy(150, 30);
-            new Enemy(200, 30);
-            new Enemy(250, 30);
-
-        }
-
+        c.update();
     }
 
+    /////////MOVE TO A RENDERING SYSTEM////////////////
+    /*
     void draw()
     {
         Graphics g = getGraphics();
 
         Graphics bbg = backBuffer.getGraphics();
 
-        //TODO Figure out how to draw a map
         bbg.setColor(Color.GREEN);
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 
@@ -188,8 +136,11 @@ public class Game extends JFrame
 
         g.drawImage(backBuffer, 0, 0, this);
 
-    }
+    }*/
 
+
+    ///////////////MOVE TO A PHYSICS SYSTEM///////////
+    /*
     void checkCollisions()
     {
 
@@ -231,5 +182,6 @@ public class Game extends JFrame
         }
 
     }
+    */
 
 }
