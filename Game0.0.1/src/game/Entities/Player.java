@@ -1,9 +1,8 @@
-package game;
+package game.Entities;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 
@@ -26,7 +25,7 @@ public class Player extends Entity {
 
         try
         {
-            String workingDir = System.getProperty("user.dir");
+            String workingDir = java.lang.System.getProperty("user.dir");
             sprite = ImageIO.read(new File(workingDir + "\\Game0.0.1\\src\\game\\player_sprite.jpg"));
             imageObserver = new ImageObserver() {
                 @Override
@@ -36,8 +35,8 @@ public class Player extends Entity {
             };
         } catch (IOException e)
         {
-            String workingDir = System.getProperty("user.dir");
-            System.out.println("Current working directory : " + workingDir);
+            String workingDir = java.lang.System.getProperty("user.dir");
+            java.lang.System.out.println("Current working directory : " + workingDir);
             e.printStackTrace();
         }
         this.width = sprite.getWidth(imageObserver);
@@ -58,10 +57,10 @@ public class Player extends Entity {
     @Override
     public void action()
     {
-        if (System.currentTimeMillis() - lastAction > cooldown)
+        if (java.lang.System.currentTimeMillis() - lastAction > cooldown)
         {
             shoot();
-            lastAction = System.currentTimeMillis();
+            lastAction = java.lang.System.currentTimeMillis();
         }
     }
 
