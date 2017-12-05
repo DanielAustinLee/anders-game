@@ -1,5 +1,7 @@
 package game.Entities;
 
+import game.Systems.EntityManager;
+
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -10,8 +12,9 @@ public class Entity
 {
 
     private static EntityManager manager = EntityManager.getEntityManager();
+    private static int entityCount = 0;
 
-
+    int id;
     int x;
     int y;
     int width;
@@ -22,15 +25,22 @@ public class Entity
 
     public Entity(int _x, int _y, int _width, int _height)
     {
+
         manager.add(this);
 
         this.width = _width;
         this.height = _height;
 
+        this.id = entityCount;
         this.x = _x;
         this.y = _y;
 
         this.orientation = 0.00;
+        entityCount++;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public int getX(){
