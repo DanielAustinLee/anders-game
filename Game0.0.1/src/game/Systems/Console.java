@@ -1,13 +1,24 @@
 package game.Systems;
 
+import game.Messaging.EntityMessage;
 import game.Messaging.InputMessage;
 import game.Messaging.Message;
 import game.Systems.System;
 
 public class Console extends System {
 
-    public Console() {
+    private static Console instance;
+
+    private Console() {
         super();
+    }
+
+    public static Console getConsole(){
+        if (instance == null){
+            instance = new Console();
+        }
+
+        return instance;
     }
 
     @Override
@@ -25,6 +36,20 @@ public class Console extends System {
             print("Mouse down: " + ((InputMessage) msg).mouseClick);
         }
 
+        if (msg instanceof EntityMessage){
+            print("ID: " + ((EntityMessage) msg).id);
+            print("X: " + ((EntityMessage) msg).x);
+            print("Y: " + ((EntityMessage) msg).y);
+        }
+
+        print("");
+
+    }
+
+
+    private void print(int i)
+    {
+        java.lang.System.out.println(i);
     }
 
     private void print(String s)

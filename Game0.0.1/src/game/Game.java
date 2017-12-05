@@ -1,6 +1,5 @@
 package game;
 
-import game.Entities.Player;
 import game.Systems.*;
 
 import java.awt.*;
@@ -8,6 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import static game.Controller.getController;
+import static game.Systems.EntityManager.getEntityManager;
+import static game.Systems.Console.getConsole;
 
 /**
  * Created by Daniel on 11/7/2017.
@@ -26,9 +27,9 @@ public class Game extends JFrame
 
     BufferedImage backBuffer;
     Input input;
-    Player p;
-    Controller c;
+    Controller controller;
     Console console;
+    EntityManager entityManager;
 
 
     public static void main(String[] a)
@@ -49,7 +50,7 @@ public class Game extends JFrame
         while (isRunning)
         {
             time = java.lang.System.currentTimeMillis();
-            c.update();
+            controller.update();
             time = (1000 / fps) - (java.lang.System.currentTimeMillis() - time);
 
 
@@ -78,8 +79,11 @@ public class Game extends JFrame
         input = new Input(this);
 
         //Initialize controller and console
-        c = getController();
-        console = new Console();
+        controller = getController();
+        console = getConsole();
+
+        //Initialize entity manager
+        entityManager = getEntityManager();
 
         //set up window
         setTitle("Anders Game");
@@ -95,7 +99,7 @@ public class Game extends JFrame
 
     void update()
     {
-        c.update();
+        controller.update();
     }
 
     /////////MOVE TO A RENDERING SYSTEM////////////////

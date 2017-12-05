@@ -12,10 +12,11 @@ import java.io.IOException;
  */
 public class Player extends Entity {
 
-    static Player player = null;
+    static Player player;
 
-    private static long cooldown = 500;
-    private static long lastAction;
+    private int speed = 5;
+
+
     public Image sprite;
     private ImageObserver imageObserver;
 
@@ -54,13 +55,28 @@ public class Player extends Entity {
         return player;
     }
 
-    @Override
-    public void action()
+
+    public void action(char key)
     {
-        if (java.lang.System.currentTimeMillis() - lastAction > cooldown)
-        {
-            shoot();
-            lastAction = java.lang.System.currentTimeMillis();
+        switch (key){
+            case 'w':
+                moveUp(speed);
+                break;
+
+
+            case 'a':
+                moveLeft(speed);
+                break;
+
+
+            case 's':
+                moveDown(speed);
+                break;
+
+
+            case 'd':
+                moveRight(speed);
+                break;
         }
     }
 
@@ -69,5 +85,6 @@ public class Player extends Entity {
         Bullet b = new Bullet(this.x, this.y);
         b.setOrientation(this.orientation);
     }
+
 
 }
