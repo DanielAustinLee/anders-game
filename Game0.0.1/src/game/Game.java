@@ -1,9 +1,11 @@
 package game;
 
+import game.Entities.Entity;
 import game.Systems.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.System;
 import javax.swing.*;
 
 import static game.Controller.getController;
@@ -102,8 +104,9 @@ public class Game extends JFrame
         controller.update();
     }
 
-    /////////MOVE TO A RENDERING SYSTEM////////////////
-    /*
+
+
+    //Should this method be an interface to a drawing system?
     void draw()
     {
         Graphics g = getGraphics();
@@ -113,8 +116,15 @@ public class Game extends JFrame
         bbg.setColor(Color.GREEN);
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 
+        bbg.setColor(Color.BLACK);
+        bbg.drawOval(EntityManager.player.getX(), EntityManager.player.getY(), 10, 10);
+        for (Entity e : EntityManager.entityPool)
+        {
+            bbg.drawOval(e.getX(),e.getY(),10,10);
+            System.out.println(e.getX());
+        }
 
-
+        /*
 
         bbg.drawImage(player.sprite, player.x1, player.y1, player.width, player.height, new ImageObserver() {
             @Override
@@ -124,7 +134,7 @@ public class Game extends JFrame
         });
 
         bbg.setColor(Color.BLACK);
-        bbg.drawLine(player.x, player.y, (int)(player.x + 20 * sin(player.orientation)), (int)(player.y + 20 * cos(player.orientation)) );
+          bbg.drawLine(player.x, player.y, (int)(player.x + 20 * sin(player.orientation)), (int)(player.y + 20 * cos(player.orientation)) );
 
         //draw bullets
         for (Bullet b : bullets)
@@ -137,10 +147,11 @@ public class Game extends JFrame
         {
             bbg.drawOval(e.x1, e.y1, 30, 30);
         }
+        */
 
         g.drawImage(backBuffer, 0, 0, this);
 
-    }*/
+    }
 
 
     ///////////////MOVE TO A PHYSICS SYSTEM///////////
