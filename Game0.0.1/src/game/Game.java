@@ -105,6 +105,8 @@ public class Game extends JFrame
     }
 
 
+
+    //Should this method be an interface to a drawing system?
     void draw()
     {
         Graphics g = getGraphics();

@@ -13,15 +13,15 @@ public class EntityManager extends System {
     public static ArrayList<Entity> entityPool;
 
     public static Player player = Player.getPlayer();
-
     private EntityManager()
     {
         entityPool = new ArrayList<>(256);
+        entityPool.add(player);
     }
 
     @Override
     public boolean canHandle(Message msg) {
-        return (msg instanceof EntityMessage);
+        return (msg instanceof InputMessage);
     }
 
     @Override
@@ -29,11 +29,10 @@ public class EntityManager extends System {
         if (msg instanceof InputMessage) {
             char key = ((InputMessage) msg).keyPressed;
             player.action(key);
+            getController().postMessage(new EntityMessage(player.getId(), player.getX(), player.getY()));
         }
 
-        for (Entity e: entityPool){
-            getController().postMessage(new EntityMessage(e.getId(), e.getX(), e.getY()));
-        }
+
 
     }
 
