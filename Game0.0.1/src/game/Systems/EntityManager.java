@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class EntityManager extends System {
 
     private static EntityManager instance;
-    private static ArrayList<Entity> entityPool;
+    public static ArrayList<Entity> entityPool;
 
-    private static Player player = Player.getPlayer();
+    public static Player player = Player.getPlayer();
 
     private EntityManager()
     {
