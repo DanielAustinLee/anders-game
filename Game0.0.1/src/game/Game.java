@@ -27,11 +27,12 @@ public class Game extends JFrame
     int rotation = 0;
 
 
-    BufferedImage backBuffer;
-    Input input;
-    Controller controller;
-    Console console;
-    EntityManager entityManager;
+    public BufferedImage backBuffer;
+    private Input input;
+    private Controller controller;
+    private Console console;
+    private EntityManager entityManager;
+    private Render render;
 
 
     public static void main(String[] a)
@@ -52,7 +53,8 @@ public class Game extends JFrame
         while (isRunning)
         {
             time = java.lang.System.currentTimeMillis();
-            controller.update();
+            update();
+            draw();
             time = (1000 / fps) - (java.lang.System.currentTimeMillis() - time);
 
 
@@ -86,6 +88,9 @@ public class Game extends JFrame
 
         //Initialize entity manager
         entityManager = getEntityManager();
+        render = new Render(windowWidth, windowHeight);
+
+
 
         //set up window
         setTitle("Anders Game");
@@ -111,19 +116,7 @@ public class Game extends JFrame
     {
         Graphics g = getGraphics();
 
-        Graphics bbg = backBuffer.getGraphics();
-
-        bbg.setColor(Color.GREEN);
-        bbg.fillRect(0, 0, windowWidth, windowHeight);
-
-        bbg.setColor(Color.BLACK);
-        bbg.drawOval(EntityManager.player.getX(), EntityManager.player.getY(), 10, 10);
-        for (Entity e : EntityManager.entityPool)
-        {
-            bbg.drawOval(e.getX(),e.getY(),10,10);
-            System.out.println(e.getX());
-        }
-
+        backBuffer = render.render();
         /*
 
         bbg.drawImage(player.sprite, player.x1, player.y1, player.width, player.height, new ImageObserver() {
