@@ -90,6 +90,8 @@ public class Game extends JFrame
         entityManager = getEntityManager();
         render = new Render(windowWidth, windowHeight);
 
+        entityManager.add(new Entity(100, 100, 10, 10));
+
 
 
         //set up window

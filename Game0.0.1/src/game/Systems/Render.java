@@ -1,6 +1,7 @@
 package game.Systems;
 
 
+import game.Entities.Entity;
 import game.Messaging.*;
 
 import java.awt.*;
@@ -37,7 +38,9 @@ public class Render extends System  {
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 
         bbg.setColor(Color.BLACK);
-        bbg.drawOval(EntityManager.player.getX(), EntityManager.player.getY(), 10, 10);
+        for (Entity e : EntityManager.entityPool){
+            bbg.drawOval(e.getX(),e.getY(),e.getWidth(),e.getHeight());
+        }
 
         return backBuffer;
     }
