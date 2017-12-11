@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 public class Input extends System implements KeyListener, MouseListener {
 
 
-    private boolean[] keys = new boolean[256];
+    private static boolean[] keys = new boolean[256];
 
     public Input(Component c)
     {
@@ -23,12 +23,15 @@ public class Input extends System implements KeyListener, MouseListener {
 
     @Override
     public void handleMessage(Message msg) {
-
+        for (int i = 0; i < keys.length; i++){
+            if (keys[i])
+                getController().postMessage(new InputMessage(keys));
+        }
     }
 
     @Override
     public boolean canHandle(Message msg) {
-        return false;
+        return true;
     }
 
     @Override
@@ -42,14 +45,14 @@ public class Input extends System implements KeyListener, MouseListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
             keys[e.getKeyCode()] = true;
-        getController().postMessage(new InputMessage(e, keys));
+        getController().postMessage(new InputMessage(keys));
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
             keys[e.getKeyCode()] = false;
-        getController().postMessage(new InputMessage(e, keys));
+        getController().postMessage(new InputMessage(keys));
     }
 
     @Override

@@ -9,10 +9,9 @@ public class InputMessage extends Message {
     public boolean[] keysPressed;
     public MouseEvent mouse = null;
 
-    public InputMessage(KeyEvent key, boolean[] keysPressed)
+    public InputMessage(boolean[] keysPressed)
     {
         super();
-        this.key = key;
         this.keysPressed = keysPressed;
     }
 

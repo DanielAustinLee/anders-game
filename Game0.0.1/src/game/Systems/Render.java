@@ -43,6 +43,7 @@ public class Render extends System  {
         bbg.setColor(Color.BLACK);
         //Should probably be an ITERATOR
         for (Entity e : EntityManager.entityPool){
+
             bbg.drawOval(e.getX(),e.getY(),e.getWidth(),e.getHeight());
         }
 

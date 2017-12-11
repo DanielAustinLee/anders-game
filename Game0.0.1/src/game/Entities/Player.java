@@ -23,7 +23,7 @@ public class Player extends Entity {
 
 
     public Image sprite;
-    private ImageObserver imageObserver;
+    public ImageObserver imageObserver;
 
     private Player(int x, int y)
     {
@@ -75,8 +75,6 @@ public class Player extends Entity {
 
         if (e.keysPressed[KeyEvent.VK_D])
             moveRight(speed);
-
-
 
 
     }
