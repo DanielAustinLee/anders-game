@@ -5,8 +5,6 @@ import game.Messaging.EntityMessage;
 import game.Messaging.InputMessage;
 import game.Messaging.Message;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class EntityManager extends System {

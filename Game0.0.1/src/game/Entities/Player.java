@@ -5,7 +5,6 @@ import game.Messaging.InputMessage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +18,6 @@ public class Player extends Entity {
     static Player player;
 
     private int speed = 5;
-    private boolean[] actions = new boolean[5];
 
 
     public Image sprite;

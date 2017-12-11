@@ -13,6 +13,7 @@ public class Input extends System implements KeyListener, MouseListener {
 
 
     private static boolean[] keys = new boolean[256];
+    private static boolean mouse = false;
 
     public Input(Component c)
     {
@@ -25,7 +26,7 @@ public class Input extends System implements KeyListener, MouseListener {
     public void handleMessage(Message msg) {
         for (int i = 0; i < keys.length; i++){
             if (keys[i])
-                getController().postMessage(new InputMessage(keys));
+                getController().postMessage(new InputMessage(keys, mouse));
         }
     }
 
@@ -45,19 +46,20 @@ public class Input extends System implements KeyListener, MouseListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
             keys[e.getKeyCode()] = true;
-        getController().postMessage(new InputMessage(keys));
+        getController().postMessage(new InputMessage(keys, mouse));
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
             keys[e.getKeyCode()] = false;
-        getController().postMessage(new InputMessage(keys));
+        getController().postMessage(new InputMessage(keys, mouse));
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        getController().postMessage(new InputMessage(e));
+        mouse = true;
+        getController().postMessage(new InputMessage(keys, mouse));
     }
 
     @Override
@@ -66,7 +68,8 @@ public class Input extends System implements KeyListener, MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        getController().postMessage(new InputMessage(e));
+        mouse = false;
+        getController().postMessage(new InputMessage(keys, mouse));
     }
 
     @Override

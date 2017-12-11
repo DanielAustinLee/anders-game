@@ -3,7 +3,6 @@ package game.Systems;
 import game.Messaging.EntityMessage;
 import game.Messaging.InputMessage;
 import game.Messaging.Message;
-import game.Systems.System;
 
 public class Console extends System {
 
@@ -32,8 +31,14 @@ public class Console extends System {
         print("Console: ");
 
         if (msg instanceof InputMessage){
-            if (((InputMessage) msg).key != null)
-                print("Key pressed: " + ((InputMessage) msg).key.getKeyChar());
+            //is there a better way to do this? seems slow
+            for (int i = 0; i < ((InputMessage) msg).keysPressed.length; i++)
+            {
+                if (((InputMessage) msg).keysPressed[i])
+                {
+                    print((char)i);
+                }
+            }
         }
 
         if (msg instanceof EntityMessage){
@@ -55,5 +60,11 @@ public class Console extends System {
     private void print(String s)
     {
         java.lang.System.out.println(s);
+    }
+
+
+    private void print(char c)
+    {
+        java.lang.System.out.println(c);
     }
 }
