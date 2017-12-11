@@ -115,33 +115,7 @@ public class Game extends JFrame
     void draw()
     {
         Graphics g = getGraphics();
-
         backBuffer = render.render();
-        /*
-
-        bbg.drawImage(player.sprite, player.x1, player.y1, player.width, player.height, new ImageObserver() {
-            @Override
-            public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
-                return false;
-            }
-        });
-
-        bbg.setColor(Color.BLACK);
-          bbg.drawLine(player.x, player.y, (int)(player.x + 20 * sin(player.orientation)), (int)(player.y + 20 * cos(player.orientation)) );
-
-        //draw bullets
-        for (Bullet b : bullets)
-        {
-            bbg.drawOval(b.x1, b.y1, 10, 10);
-        }
-
-        //draw enemies
-        for (Enemy e : enemies)
-        {
-            bbg.drawOval(e.x1, e.y1, 30, 30);
-        }
-        */
-
         g.drawImage(backBuffer, 0, 0, this);
 
     }

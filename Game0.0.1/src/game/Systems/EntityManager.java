@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 public class EntityManager extends System {
 
-    private static EntityManager instance;
+    private static EntityManager instance = null;
     public static ArrayList<Entity> entityPool;
 
     public static Player player = Player.getPlayer();
     private EntityManager()
     {
         entityPool = new ArrayList<>(256);
-        entityPool.add(player);
+
     }
 
     @Override

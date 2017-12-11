@@ -1,12 +1,10 @@
 package game.Systems;
 
-import game.Entities.Entity;
-import game.Game;
+
 import game.Messaging.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 import static game.Game.windowHeight;
 import static game.Game.windowWidth;
 
@@ -26,6 +24,9 @@ public class Render extends System  {
 
     @Override
     public void handleMessage(Message msg) {
+        if (msg instanceof DrawMessage){
+            render();
+        }
     }
 
     public BufferedImage render()
@@ -37,11 +38,6 @@ public class Render extends System  {
 
         bbg.setColor(Color.BLACK);
         bbg.drawOval(EntityManager.player.getX(), EntityManager.player.getY(), 10, 10);
-        //for (Entity e : EntityManager.entityPool)
-        //{
-        //    bbg.drawOval(e.getX(),e.getY(),10,10);
-        //    java.lang.System.out.println(e.getX());
-        //}
 
         return backBuffer;
     }
