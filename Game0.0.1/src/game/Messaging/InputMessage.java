@@ -1,15 +1,25 @@
 package game.Messaging;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 public class InputMessage extends Message {
 
-    public boolean mouseClick = false;
-    public char keyPressed;
+    public KeyEvent key = null;
+    public boolean[] keysPressed;
+    public MouseEvent mouse = null;
 
-    public InputMessage(boolean mouseDown, char key)
+    public InputMessage(KeyEvent key, boolean[] keysPressed)
     {
         super();
-        mouseClick = mouseDown;
-        keyPressed = key;
+        this.key = key;
+        this.keysPressed = keysPressed;
+    }
+
+    public InputMessage( MouseEvent mouse)
+    {
+        super();
+        this.mouse = mouse;
     }
 
 }

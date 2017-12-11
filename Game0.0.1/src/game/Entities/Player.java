@@ -1,7 +1,11 @@
 package game.Entities;
 
+import game.Messaging.InputMessage;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +19,7 @@ public class Player extends Entity {
     static Player player;
 
     private int speed = 5;
+    private boolean[] actions = new boolean[5];
 
 
     public Image sprite;
@@ -56,28 +61,24 @@ public class Player extends Entity {
     }
 
 
-    public void action(char key)
+    public void action(InputMessage e)
     {
-        switch (key){
-            case 'w':
-                moveUp(speed);
-                break;
+        if (e.keysPressed[KeyEvent.VK_W])
+            moveUp(speed);
+
+        if (e.keysPressed[KeyEvent.VK_A])
+            moveLeft(speed);
+
+        if (e.keysPressed[KeyEvent.VK_S])
+            moveDown(speed);
 
 
-            case 'a':
-                moveLeft(speed);
-                break;
+        if (e.keysPressed[KeyEvent.VK_D])
+            moveRight(speed);
 
 
-            case 's':
-                moveDown(speed);
-                break;
 
 
-            case 'd':
-                moveRight(speed);
-                break;
-        }
     }
 
     public void shoot()

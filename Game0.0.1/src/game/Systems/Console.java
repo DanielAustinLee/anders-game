@@ -32,8 +32,8 @@ public class Console extends System {
         print("Console: ");
 
         if (msg instanceof InputMessage){
-            print("Key Pressed: " + ((InputMessage) msg).keyPressed);
-            print("Mouse down: " + ((InputMessage) msg).mouseClick);
+            if (((InputMessage) msg).key != null)
+                print("Key pressed: " + ((InputMessage) msg).key.getKeyChar());
         }
 
         if (msg instanceof EntityMessage){

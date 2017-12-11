@@ -5,6 +5,8 @@ import game.Messaging.EntityMessage;
 import game.Messaging.InputMessage;
 import game.Messaging.Message;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class EntityManager extends System {
@@ -27,8 +29,7 @@ public class EntityManager extends System {
     @Override
     public void handleMessage(Message msg) {
         if (msg instanceof InputMessage) {
-            char key = ((InputMessage) msg).keyPressed;
-            player.action(key);
+            player.action((InputMessage) msg);
             getController().postMessage(new EntityMessage(player.getId(), player.getX(), player.getY()));
         }
 

@@ -32,6 +32,8 @@ public class Render extends System  {
 
     public BufferedImage render()
     {
+        //TODO figure out how to center camera on player
+        //create a camera class, draw all objects on screen?
         Graphics bbg = backBuffer.getGraphics();
 
         bbg.setColor(Color.GREEN);

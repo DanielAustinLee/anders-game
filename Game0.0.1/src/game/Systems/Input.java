@@ -11,7 +11,8 @@ import java.awt.event.MouseListener;
 
 public class Input extends System implements KeyListener, MouseListener {
 
-    private boolean mouseDown = false;
+
+    private boolean[] keys = new boolean[256];
 
     public Input(Component c)
     {
@@ -39,29 +40,30 @@ public class Input extends System implements KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        getController().postMessage(new InputMessage(mouseDown, e.getKeyChar()));
+        if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
+            keys[e.getKeyCode()] = true;
+        getController().postMessage(new InputMessage(e, keys));
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        if (e.getKeyCode() > 0 && e.getKeyCode() < 256)
+            keys[e.getKeyCode()] = false;
+        getController().postMessage(new InputMessage(e, keys));
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        getController().postMessage(new InputMessage(mouseDown, '`'));
+        getController().postMessage(new InputMessage(e));
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mouseDown = true;
-        getController().postMessage(new InputMessage(mouseDown, '`'));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        mouseDown = false;
-        getController().postMessage(new InputMessage(mouseDown, '`'));
+        getController().postMessage(new InputMessage(e));
     }
 
     @Override

@@ -5,7 +5,6 @@ import game.Systems.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.System;
 import javax.swing.*;
 
 import static game.Controller.getController;
