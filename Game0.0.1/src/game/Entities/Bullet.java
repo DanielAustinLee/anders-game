@@ -7,12 +7,10 @@ import java.util.ArrayList;
  */
 public class Bullet extends Entity {
 
-    static ArrayList<Bullet> bullets = new ArrayList<>(15);
 
     public Bullet(int x, int y)
     {
         super(x , y, 5, 5);
-        bullets.add(this);
     }
 
 

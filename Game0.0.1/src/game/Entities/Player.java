@@ -17,7 +17,7 @@ public class Player extends Entity {
 
     static Player player;
 
-    private int speed = 5;
+    private int speed = 1;
 
 
     public Image sprite;

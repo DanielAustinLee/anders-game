@@ -19,11 +19,8 @@ public class Game extends JFrame
 
     private boolean isRunning;
     private int fps;
-
     public static final int windowWidth = 600;
     public static final int windowHeight = 400;
-
-    int rotation = 0;
 
 
     public BufferedImage backBuffer;
@@ -89,12 +86,12 @@ public class Game extends JFrame
         entityManager = getEntityManager();
         render = new Render(windowWidth, windowHeight);
 
-        entityManager.add(new Entity(100, 100, 10, 10));
-
+        entityManager.add(new Entity(200, 200, 10, 10));
+        entityManager.add(new Entity(200, 300, 10, 10));
 
 
         //set up window
-        setTitle("Anders Game");
+        setTitle("ANDERS GAME");
         setSize(windowWidth, windowHeight);
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
