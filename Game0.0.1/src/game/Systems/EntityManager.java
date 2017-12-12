@@ -21,6 +21,7 @@ public class EntityManager extends System {
 
     @Override
     public boolean canHandle(Message msg) {
+
         return (msg instanceof InputMessage);
     }
 
@@ -30,8 +31,6 @@ public class EntityManager extends System {
             player.action((InputMessage) msg);
             getController().postMessage(new EntityMessage(player.getId(), player.getX(), player.getY()));
         }
-
-
 
     }
 
@@ -49,6 +48,14 @@ public class EntityManager extends System {
     {
         entityPool.add(e);
         getController().postMessage(new EntityMessage(e.getId(), e.getX(), e.getY()));
+    }
+
+    public void update()
+    {
+        for (Entity e : entityPool)
+        {
+            e.action();
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package game.Systems;
 
+import game.Messaging.DrawMessage;
 import game.Messaging.EntityMessage;
 import game.Messaging.InputMessage;
 import game.Messaging.Message;
@@ -46,6 +47,7 @@ public class Console extends System {
             print("X: " + ((EntityMessage) msg).x);
             print("Y: " + ((EntityMessage) msg).y);
         }
+
 
         print("");
 

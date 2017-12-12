@@ -1,5 +1,6 @@
 package game;
 
+import game.Entities.Enemy;
 import game.Entities.Entity;
 import game.Systems.*;
 
@@ -46,11 +47,12 @@ public class Game extends JFrame
 
         long time;
 
+        //main loop should decouple updating and drawing
+
         while (isRunning)
         {
             time = java.lang.System.currentTimeMillis();
-            update();
-            draw();
+            tick();
             time = (1000 / fps) - (java.lang.System.currentTimeMillis() - time);
 
 
@@ -86,8 +88,8 @@ public class Game extends JFrame
         entityManager = getEntityManager();
         render = new Render(windowWidth, windowHeight);
 
-        entityManager.add(new Entity(200, 200, 10, 10));
-        entityManager.add(new Entity(200, 300, 10, 10));
+        entityManager.add(new Enemy(200, 200));
+        entityManager.add(new Enemy(250, 250));
 
 
         //set up window
@@ -102,15 +104,21 @@ public class Game extends JFrame
 
     }
 
-    void update()
+
+    private void tick(){
+        update();
+        draw();
+    }
+
+    private void update()
     {
         controller.update();
     }
 
 
 
-    //Should this method be an interface to a drawing system?
-    void draw()
+    //make this a responsibility of the controller
+    private void draw()
     {
         Graphics g = getGraphics();
         backBuffer = render.render();

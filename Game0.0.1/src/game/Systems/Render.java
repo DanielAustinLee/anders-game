@@ -42,7 +42,7 @@ public class Render extends System  {
 
         cam.move(Player.getPlayer().getX(), Player.getPlayer().getY());
 
-
+        //background
         bbg.setColor(Color.GREEN);
         bbg.fillRect(0, 0, windowWidth, windowHeight);
 

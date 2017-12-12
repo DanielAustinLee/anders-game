@@ -2,6 +2,7 @@ package game;
 
 
 import game.Messaging.Message;
+import game.Systems.EntityManager;
 import game.Systems.System;
 
 import java.util.ArrayList;
@@ -42,6 +43,16 @@ public class Controller
     public void update()
     {
 
+        for (System s : systems)
+        {
+            if (s instanceof EntityManager)
+            {
+                ((EntityManager) s).update();
+            }
+        }
+
+
+
         if (messageBuffer.size() > 0) {
             Message msg = messageBuffer.remove(0);
 
@@ -50,6 +61,7 @@ public class Controller
                 if (s.canHandle(msg)) {
                     s.handleMessage(msg);
                 }
+
             }
         }
 

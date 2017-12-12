@@ -7,16 +7,12 @@ import java.util.ArrayList;
  */
 public class Enemy extends Entity
 {
-    static ArrayList<Enemy> enemies = new ArrayList<>(5);
 
     private long count = 0;
-    private boolean patrollingNorth = false;
-    private boolean patrollingSouth = true;
 
     public Enemy(int x, int y)
     {
         super(x, y, 30,30);
-        enemies.add(this);
     }
 
     //TODO Make enemies do things
