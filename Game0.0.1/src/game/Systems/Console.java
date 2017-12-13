@@ -53,6 +53,8 @@ public class Console extends System {
 
     }
 
+    public void update(){}
+
 
     private void print(int i)
     {

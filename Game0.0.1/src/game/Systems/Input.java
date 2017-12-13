@@ -81,4 +81,7 @@ public class Input extends System implements KeyListener, MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    //update doesn't really fit here... should this be a system?
+    public void update(){}
 }

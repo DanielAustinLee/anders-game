@@ -55,15 +55,14 @@ public class Render extends System  {
 
             if (cam.inFrame(e.getX(), e.getY(), windowWidth, windowHeight)) {
 
-                if (e instanceof Player) {
-                   bbg.drawOval(windowWidth / 2, windowHeight / 2, e.getWidth(), e.getHeight());
-                }
-                else
-                    bbg.drawOval(windowWidth/2 + (e.getX() - cam.getX()), windowHeight/2 + (e.getY() - cam.getY()), e.getWidth(), e.getHeight());
+                bbg.drawOval(windowWidth / 2 + (e.getX() - cam.getX()), windowHeight / 2 + (e.getY() - cam.getY()), e.getWidth(), e.getHeight());
+                bbg.drawOval(windowWidth / 2 + (e.getX() - cam.getX()), windowHeight / 2 + (e.getY() - cam.getY()), 1,1);
 
             }
         }
 
         return backBuffer;
     }
+
+    public void update(){}
 }

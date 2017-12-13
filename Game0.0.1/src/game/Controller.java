@@ -45,10 +45,7 @@ public class Controller
 
         for (System s : systems)
         {
-            if (s instanceof EntityManager)
-            {
-                ((EntityManager) s).update();
-            }
+            s.update();
         }
 
 

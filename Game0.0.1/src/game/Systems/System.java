@@ -5,6 +5,8 @@ import game.Messaging.Message;
 
 public abstract class System{
 
+
+
     private Controller c;
 
     public System(){
@@ -16,6 +18,8 @@ public abstract class System{
         return c;
     }
 
+
+    public abstract void update();
     public abstract boolean canHandle(Message msg);
     public abstract void handleMessage(Message msg);
 }

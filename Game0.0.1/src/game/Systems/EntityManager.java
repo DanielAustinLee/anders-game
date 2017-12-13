@@ -29,7 +29,6 @@ public class EntityManager extends System {
     public void handleMessage(Message msg) {
         if (msg instanceof InputMessage) {
             player.action((InputMessage) msg);
-            getController().postMessage(new EntityMessage(player.getId(), player.getX(), player.getY()));
         }
 
     }

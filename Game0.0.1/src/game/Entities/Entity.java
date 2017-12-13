@@ -19,6 +19,7 @@ public class Entity
     int y;
     int width;
     int height;
+    public Hitbox hitbox;
     double orientation;
 
 
@@ -30,6 +31,8 @@ public class Entity
 
         this.width = _width;
         this.height = _height;
+
+        this.hitbox = new Hitbox(x + width/2, y + height/2, width, height);
 
         this.id = entityCount;
         this.x = _x;
@@ -90,5 +93,7 @@ public class Entity
     }
 
     public void action(){}
+
+    public boolean equals(Entity e) { return this.getId() == e.getId(); }
 
 }

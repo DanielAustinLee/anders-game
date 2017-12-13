@@ -92,6 +92,7 @@ public class Game extends JFrame
         entityManager.add(new Enemy(250, 250));
 
 
+
         //set up window
         setTitle("ANDERS GAME");
         setSize(windowWidth, windowHeight);
@@ -116,7 +117,8 @@ public class Game extends JFrame
     }
 
 
-
+    //heavily violates model view controller principle
+    //OR DOES IT?????????????????????????????????????????
     //make this a responsibility of the controller
     private void draw()
     {
