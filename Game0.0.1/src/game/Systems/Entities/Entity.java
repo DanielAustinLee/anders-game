@@ -12,12 +12,14 @@ public class Entity
     private static EntityManager manager = EntityManager.getEntityManager();
     private static int entityCount = 0;
 
+
+    public boolean visible;
+
     int id;
     int x;
     int y;
     int width;
     int height;
-    public Hitbox hitbox;
     double orientation;
 
 
@@ -25,12 +27,11 @@ public class Entity
     public Entity(int _x, int _y, int _width, int _height)
     {
 
+        visible = true;
         manager.add(this);
 
         this.width = _width;
         this.height = _height;
-
-        this.hitbox = new Hitbox(x + width/2, y + height/2, width, height);
 
         this.id = entityCount;
         this.x = _x;
@@ -93,5 +94,17 @@ public class Entity
     public void action(){}
 
     public boolean equals(Entity e) { return this.getId() == e.getId(); }
+
+    public Hitbox getHitbox(){
+        return (new Hitbox(this));
+    }
+
+    public boolean checkCollision(Entity other){
+        return getHitbox().isColliding(other.getHitbox());
+    }
+
+    public void kill(){
+        visible = false;
+    }
 
 }

@@ -9,6 +9,8 @@ import game.Systems.System;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
+
 import static game.Game.windowHeight;
 import static game.Game.windowWidth;
 
@@ -53,9 +55,10 @@ public class Render extends System {
 
 
         //Should probably be an ITERATOR
-        for (Entity e : EntityManager.entityPool) {
-
-            if (cam.inFrame(e.getX(), e.getY(), windowWidth, windowHeight)) {
+        Iterator<Entity> iterator = EntityManager.entityPool.iterator();
+        while (iterator.hasNext()) {
+            Entity e = iterator.next();
+            if (cam.inFrame(e.getX(), e.getY(), windowWidth, windowHeight) && e.visible) {
 
                 bbg.drawOval(windowWidth / 2 + (e.getX() - cam.getX()), windowHeight / 2 + (e.getY() - cam.getY()), e.getWidth(), e.getHeight());
                 bbg.drawOval(windowWidth / 2 + (e.getX() - cam.getX()), windowHeight / 2 + (e.getY() - cam.getY()), 1,1);

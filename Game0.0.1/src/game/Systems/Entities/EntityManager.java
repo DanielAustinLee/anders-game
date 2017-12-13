@@ -6,6 +6,7 @@ import game.Systems.Messaging.Message;
 import game.Systems.System;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class EntityManager extends System {
 
@@ -51,10 +52,20 @@ public class EntityManager extends System {
 
     public void update()
     {
-        for (Entity e : entityPool)
+        Iterator<Entity> iterator = entityPool.iterator();
+        while (iterator.hasNext())
         {
+            Entity e = iterator.next();
             e.action();
+
+            if (!e.equals(player) && player.checkCollision(e))
+                java.lang.System.out.println("COLLISION");
         }
+    }
+
+    public void remove(Entity e)
+    {
+        entityPool.remove(e);
     }
 
 

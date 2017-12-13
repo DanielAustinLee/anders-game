@@ -2,21 +2,17 @@ package game.Systems.Entities;
 
 public class Hitbox {
 
-    int x;
-    int y;
-    int height;
-    int width;
+    Entity e;
 
 
-    public Hitbox(int x, int y, int width, int height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public Hitbox(Entity entity){
+        this.e = entity;
     }
 
     public boolean isColliding(Hitbox other){
-        return (false);
+
+        return !(e.getX() + e.getWidth() < other.e.getX() || other.e.getX() + other.e.getWidth() < e.getX() || e.getY() + e.getHeight() < other.e.getY() || other.e.getY() + e.getHeight() < e.getY() );
+
     }
 
 }
