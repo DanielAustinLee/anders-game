@@ -1,6 +1,6 @@
-package game.Messaging;
+package game.Systems.Messaging;
 
-public class InputMessage extends Message {
+public class InputMessage implements Message {
 
     public boolean[] keysPressed;
     public boolean mouseDown;

@@ -1,4 +1,4 @@
-package game.Entities;
+package game.Systems.Entities;
 
 public class Hitbox {
 

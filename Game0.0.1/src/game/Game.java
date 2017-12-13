@@ -1,7 +1,8 @@
 package game;
 
-import game.Entities.Enemy;
-import game.Entities.Entity;
+import game.Systems.Draw.Render;
+import game.Systems.Entities.Enemy;
+import game.Systems.Entities.EntityManager;
 import game.Systems.*;
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import static game.Controller.getController;
-import static game.Systems.EntityManager.getEntityManager;
+import static game.Systems.Entities.EntityManager.getEntityManager;
 import static game.Systems.Console.getConsole;
 
 /**

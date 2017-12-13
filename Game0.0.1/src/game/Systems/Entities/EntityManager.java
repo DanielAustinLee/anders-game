@@ -1,9 +1,9 @@
-package game.Systems;
+package game.Systems.Entities;
 
-import game.Entities.*;
-import game.Messaging.EntityMessage;
-import game.Messaging.InputMessage;
-import game.Messaging.Message;
+import game.Systems.Messaging.EntityMessage;
+import game.Systems.Messaging.InputMessage;
+import game.Systems.Messaging.Message;
+import game.Systems.System;
 
 import java.util.ArrayList;
 

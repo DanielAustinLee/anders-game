@@ -1,8 +1,10 @@
 package game.Systems;
 
 import game.Controller;
-import game.Messaging.Message;
+import game.Systems.Messaging.Message;
 
+//this could possibly be an interface as well, but then each system would have to be responsible for
+//attaching to controller
 public abstract class System{
 
 

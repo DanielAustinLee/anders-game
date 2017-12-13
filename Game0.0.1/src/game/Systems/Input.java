@@ -1,7 +1,7 @@
 package game.Systems;
 
-import game.Messaging.InputMessage;
-import game.Messaging.Message;
+import game.Systems.Messaging.InputMessage;
+import game.Systems.Messaging.Message;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

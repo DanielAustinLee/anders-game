@@ -1,8 +1,7 @@
 package game;
 
 
-import game.Messaging.Message;
-import game.Systems.EntityManager;
+import game.Systems.Messaging.Message;
 import game.Systems.System;
 
 import java.util.ArrayList;

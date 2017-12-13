@@ -1,4 +1,4 @@
-package game.Systems;
+package game.Systems.Draw;
 
 public class Camera {
 

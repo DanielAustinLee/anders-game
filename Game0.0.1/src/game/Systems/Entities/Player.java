@@ -1,6 +1,6 @@
-package game.Entities;
+package game.Systems.Entities;
 
-import game.Messaging.InputMessage;
+import game.Systems.Messaging.InputMessage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

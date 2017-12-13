@@ -1,16 +1,18 @@
-package game.Systems;
+package game.Systems.Draw;
 
 
-import game.Entities.Entity;
-import game.Entities.Player;
-import game.Messaging.*;
+import game.Systems.Entities.Entity;
+import game.Systems.Entities.EntityManager;
+import game.Systems.Entities.Player;
+import game.Systems.Messaging.*;
+import game.Systems.System;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static game.Game.windowHeight;
 import static game.Game.windowWidth;
 
-public class Render extends System  {
+public class Render extends System {
 
     public Camera cam;
     //Should this be a singleton like the other systems????

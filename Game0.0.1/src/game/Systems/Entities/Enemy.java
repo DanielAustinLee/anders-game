@@ -1,6 +1,4 @@
-package game.Entities;
-
-import java.util.ArrayList;
+package game.Systems.Entities;
 
 /**
  * Created by Daniel on 11/18/2017.

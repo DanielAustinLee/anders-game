@@ -1,6 +1,4 @@
-package game.Entities;
-
-import game.Systems.EntityManager;
+package game.Systems.Entities;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;

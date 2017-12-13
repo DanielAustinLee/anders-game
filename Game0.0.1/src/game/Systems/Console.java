@@ -1,9 +1,8 @@
 package game.Systems;
 
-import game.Messaging.DrawMessage;
-import game.Messaging.EntityMessage;
-import game.Messaging.InputMessage;
-import game.Messaging.Message;
+import game.Systems.Messaging.EntityMessage;
+import game.Systems.Messaging.InputMessage;
+import game.Systems.Messaging.Message;
 
 public class Console extends System {
 

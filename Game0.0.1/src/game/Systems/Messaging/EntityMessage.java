@@ -1,6 +1,6 @@
-package game.Messaging;
+package game.Systems.Messaging;
 
-public class EntityMessage extends Message {
+public class EntityMessage implements Message {
     public int id;
     public int x;
     public int y;
