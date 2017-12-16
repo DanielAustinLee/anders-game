@@ -1,7 +1,7 @@
 package game;
 
 import game.Systems.Draw.Render;
-import game.Systems.Entities.Enemy;
+import game.Systems.Game.Enemy;
 import game.Systems.Entities.EntityManager;
 import game.Systems.*;
 
@@ -89,7 +89,7 @@ public class Game extends JFrame
         entityManager = getEntityManager();
         render = new Render(windowWidth, windowHeight);
 
-        entityManager.add(new Enemy(200, 200));
+        entityManager.add(new Enemy(150, 200));
         entityManager.add(new Enemy(250, 250));
 
 

@@ -1,5 +1,6 @@
-package game.Systems.Entities;
+package game.Systems.Game;
 
+import game.Systems.Entities.Entity;
 import game.Systems.Messaging.InputMessage;
 
 import javax.imageio.ImageIO;
@@ -74,14 +75,20 @@ public class Player extends Entity {
         if (e.keysPressed[KeyEvent.VK_D])
             moveRight(speed);
 
-
+        if (e.keysPressed[KeyEvent.VK_SPACE])
+            shoot();
     }
 
     public void shoot()
     {
-        Bullet b = new Bullet(this.x, this.y);
+        Bullet b = new Bullet(getX(), getY());
         b.setOrientation(this.orientation);
     }
 
+    public void kill()
+    {
+        super.kill();
+        player = null;
+    }
 
 }

@@ -1,4 +1,6 @@
-package game.Systems.Entities;
+package game.Systems.Game;
+
+import game.Systems.Entities.Entity;
 
 /**
  * Created by Daniel on 11/18/2017.

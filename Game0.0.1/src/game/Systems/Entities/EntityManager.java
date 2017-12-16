@@ -1,5 +1,8 @@
 package game.Systems.Entities;
 
+import game.Systems.Game.Bullet;
+import game.Systems.Game.Enemy;
+import game.Systems.Game.Player;
 import game.Systems.Messaging.EntityMessage;
 import game.Systems.Messaging.InputMessage;
 import game.Systems.Messaging.Message;
@@ -56,9 +59,19 @@ public class EntityManager extends System {
         for (Entity e : entityPool)
         {
             e.action();
-            if (!e.equals(player) && e.checkCollision(player))
+            if (e instanceof Enemy && e.checkCollision(player))
             {
-                entityPool.remove(e);
+                entityPool.remove(player);
+            }
+
+            if (!e.equals(player))
+            {
+                for (Entity o : entityPool) {
+                    if ((o instanceof Bullet) && (e instanceof Enemy) && e.checkCollision(o)) {
+                        entityPool.remove(o);
+                        entityPool.remove(e);
+                    }
+                }
             }
         }
     }

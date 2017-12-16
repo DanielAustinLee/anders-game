@@ -15,12 +15,12 @@ public class Entity
 
     public boolean visible;
 
-    int id;
-    int x;
-    int y;
-    int width;
-    int height;
-    double orientation;
+    protected int id;
+    protected int x;
+    protected int y;
+    protected int width;
+    protected int height;
+    protected double orientation;
 
 
 

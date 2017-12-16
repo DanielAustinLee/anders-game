@@ -3,7 +3,7 @@ package game.Systems.Draw;
 
 import game.Systems.Entities.Entity;
 import game.Systems.Entities.EntityManager;
-import game.Systems.Entities.Player;
+import game.Systems.Game.Player;
 import game.Systems.Messaging.*;
 import game.Systems.System;
 
@@ -16,7 +16,7 @@ import static game.Game.windowWidth;
 
 public class Render extends System {
 
-    public Camera cam;
+    private Camera cam;
     //Should this be a singleton like the other systems????
     //Or should the other systems be singletons at all???
 
@@ -54,7 +54,6 @@ public class Render extends System {
         bbg.setColor(Color.BLACK);
 
 
-        //Should probably be an ITERATOR
         Iterator<Entity> iterator = EntityManager.entityPool.iterator();
         while (iterator.hasNext()) {
             Entity e = iterator.next();
