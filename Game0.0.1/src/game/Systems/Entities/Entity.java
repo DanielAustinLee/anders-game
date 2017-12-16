@@ -105,6 +105,7 @@ public class Entity
 
     public void kill(){
         visible = false;
+        manager.remove(this);
     }
 
 }

@@ -7,16 +7,17 @@ import game.Systems.System;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EntityManager extends System {
 
     private static EntityManager instance = null;
-    public static ArrayList<Entity> entityPool;
+    public static CopyOnWriteArrayList<Entity> entityPool;
 
     public static Player player = Player.getPlayer();
     private EntityManager()
     {
-        entityPool = new ArrayList<>(256);
+        entityPool = new CopyOnWriteArrayList(new ArrayList<Entity>(256));
 
     }
 
@@ -52,20 +53,26 @@ public class EntityManager extends System {
 
     public void update()
     {
-        Iterator<Entity> iterator = entityPool.iterator();
-        while (iterator.hasNext())
+        for (Entity e : entityPool)
         {
-            Entity e = iterator.next();
             e.action();
-
-            if (!e.equals(player) && player.checkCollision(e))
-                java.lang.System.out.println("COLLISION");
+            if (!e.equals(player) && e.checkCollision(player))
+            {
+                entityPool.remove(e);
+            }
         }
     }
 
     public void remove(Entity e)
     {
-        entityPool.remove(e);
+
+        for (Iterator<Entity> it = entityPool.iterator(); it.hasNext();)
+        {
+            Entity currentEntity = it.next();
+            if (currentEntity.equals(e)){
+                it.remove();
+            }
+        }
     }
 
 
