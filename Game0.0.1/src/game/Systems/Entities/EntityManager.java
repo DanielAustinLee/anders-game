@@ -79,13 +79,14 @@ public class EntityManager extends System {
     public void remove(Entity e)
     {
 
-        for (Iterator<Entity> it = entityPool.iterator(); it.hasNext();)
+        entityPool.removeIf((Entity o) -> o.equals(e));
+        /*for (Iterator<Entity> it = entityPool.iterator(); it.hasNext();)
         {
             Entity currentEntity = it.next();
             if (currentEntity.equals(e)){
                 it.remove();
             }
-        }
+        }*/
     }
 
 
