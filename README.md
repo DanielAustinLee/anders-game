@@ -1,10 +1,7 @@
 # anders-game
 ANDERS GAME
 
-----------------------------------------
-This is my very first game!
 
-At the moment there is no objective, you can move an oval across a green background, neat huh?!
 
 ----------------------------------------
 TO DO:
