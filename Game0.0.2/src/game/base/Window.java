@@ -9,28 +9,23 @@ public class Window extends JFrame {
     private static int windowWidth = 600;
     private static int windowHeight = 400;
 
-    private boolean isRunning;
+    private static boolean running;
 
     protected static Window mainWindow;
 
-    private BufferedImage backBuffer;
-    private Graphics gfxObject = getGraphics();
-
-    public static void main(String[] args)
-    {
-        Window mainWindow = new Window();
-        mainWindow.run();
-        java.lang.System.exit(0);
-    }
-
-    protected void run()
+    private Window()
     {
         initialize();
-        while (isRunning)
+        //run();
+    }
+
+/*    protected void run()
+    {
+        while (running)
         {
 
         }
-    }
+    }*/
 
     private void initialize()
     {
@@ -40,18 +35,29 @@ public class Window extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        //Initialize back buffer
-        backBuffer = new BufferedImage(windowWidth, windowHeight, BufferedImage.TYPE_INT_RGB);
+        running = true;
+
     }
 
-    public void draw(BufferedImage biNextImage)
-    {
-        gfxObject.drawImage(backBuffer, 0, 0, this);
-        backBuffer  = biNextImage;
-    }
+
 
     public void terminate()
     {
-        isRunning = false;
+        running = false;
+        setVisible(false);
+    }
+
+    protected static Window getWindow()
+    {
+        if (mainWindow == null)
+        {
+            mainWindow = new Window();
+        }
+        return mainWindow;
+    }
+
+    protected static boolean isRunning()
+    {
+        return running;
     }
 }
